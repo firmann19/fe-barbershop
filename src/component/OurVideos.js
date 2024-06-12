@@ -2,8 +2,6 @@ import React from "react";
 import EmblaCarouselVideo from "./partikel/EmblaCarouselVideo";
 
 const OPTIONS = { loop: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 function OurVideos() {
   return (
@@ -13,9 +11,9 @@ function OurVideos() {
           OUR VIDEOS
         </h2>
         <p className="text-[20px] text-white text-center">
-          well known on TIktok with millions of views
+          well known on TikTok with millions of views
         </p>
-        <EmblaCarouselVideo slides={SLIDES} options={OPTIONS} />
+        <EmblaCarouselVideo options={OPTIONS} />
       </div>
     </section>
   );

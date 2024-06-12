@@ -2,8 +2,6 @@ import React from "react";
 import EmblaCarousel from "./partikel/EmblaCarousel";
 
 const OPTIONS = { dragFree: true, loop: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 function Transformation() {
   return (
@@ -13,7 +11,7 @@ function Transformation() {
           TRANSFORMATION
         </h2>
 
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        <EmblaCarousel options={OPTIONS} />
       </div>
     </section>
   );

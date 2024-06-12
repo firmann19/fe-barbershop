@@ -1,15 +1,24 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
+// Import videos from assets folder
+import video1 from '../../assets/video/section 3/rayhan blonde hair buzz.mp4';
+import video2 from '../../assets/video/section 3/rayhan 167.8k.mp4';
+import video3 from '../../assets/video/section 3/rayhan 18.8k.mp4';
+import video4 from '../../assets/video/section 3/rayhan 50.2k.mp4';
+
 const TWEEN_FACTOR_BASE = 0.84;
 
 const numberWithinRange = (number, min, max) =>
   Math.min(Math.max(number, min), max);
 
 const EmblaCarouselVideo = (props) => {
-  const { slides, options } = props;
+  const { options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
+
+  // Array of video sources
+  const videos = [video1, video2, video3, video4];
 
   const setTweenFactor = useCallback((emblaApi) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
@@ -62,7 +71,7 @@ const EmblaCarouselVideo = (props) => {
       .on("reInit", tweenOpacity)
       .on("scroll", tweenOpacity)
       .on("slideFocus", tweenOpacity);
-  }, [emblaApi, tweenOpacity]);
+  }, [emblaApi, setTweenFactor, tweenOpacity]);
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
@@ -71,12 +80,13 @@ const EmblaCarouselVideo = (props) => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {videos.map((videoSrc, index) => (
             <div className="embla__slide" key={index}>
-              <img
-                className="embla__slide__img"
-                src={`https://picsum.photos/600/350?v=${index}`}
-                alt="Your alt text"
+              <video
+                className="embla__slide__video"
+                controls
+                src={videoSrc}
+                alt={`Video ${index + 1}`}
               />
             </div>
           ))}
